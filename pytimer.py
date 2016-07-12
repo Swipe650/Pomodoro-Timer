@@ -144,8 +144,13 @@ def switch_to_window(title_regexp):
 def formatter(sec):
     # format as 2 digit integers, fills with zero to the left
     # divmod() gives minutes, seconds
-    return "{:02d}:{:02d}".format(*divmod(sec, 60))
-
+    #return "{:02d}:{:02d}".format(*divmod(sec, 60))
+    hours, remainder = divmod(sec, 3600)
+    mins, sec = divmod(remainder, 60)
+    if MINUTES > 60:
+        return "{:2d}:{:02d}:{:02d}".format(hours, mins, sec)
+    else:
+        return "{:02d}:{:02d}".format(mins, sec)
 
 def play_sound():
     os.system("play -q -v {vol} {fname} &".format(
@@ -330,7 +335,7 @@ root.geometry('{}x{}'.format(190, 230))
 time_str = tk.StringVar()
 # create the time display label, give it a large font
 # label auto-adjusts to the font
-label_font = ('helvetica', 40)
+label_font = ('helvetica', 32)
 tk.Label(root, textvariable=time_str, font=label_font, bg='white',
          fg='red', relief='raised', bd=3).pack(fill='x', padx=5, pady=5)
 time_str.set(formatter(MINUTES * 60))
