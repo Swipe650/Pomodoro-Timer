@@ -11,6 +11,6 @@ Modified by: Swipe650 https://github.com/Swipe650
 
 Create an application launcher and execute ./launcher.sh for time with basic presets
 
-For a custom timer execute './pytimer.py X' or ./launcher.sh X' (where X = number of minutes)
+For a custom timer execute './pytimer.py X' or './launcher.sh X' (where X = number of minutes)
 
 Todo: add an input box for time required and a button to increment time remianing by 1 mintue 
