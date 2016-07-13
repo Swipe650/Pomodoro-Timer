@@ -22,6 +22,10 @@ from collections import OrderedDict
 from subprocess import PIPE, STDOUT, Popen
 from subprocess import call
 
+import tkinter
+from tkinter import *
+
+
 # Manjaro: sudo pacman -S tk
 # Ubuntu:  sudo apt-get install python3-tk
 import tkinter as tk
@@ -147,10 +151,11 @@ def formatter(sec):
     #return "{:02d}:{:02d}".format(*divmod(sec, 60))
     hours, remainder = divmod(sec, 3600)
     mins, sec = divmod(remainder, 60)
-    if MINUTES > 60:
-        return "{:2d}:{:02d}:{:02d}".format(hours, mins, sec)
-    else:
-        return "{:02d}:{:02d}".format(mins, sec)
+    #if MINUTES > 60:
+    return "{:1d}:{:02d}:{:02d}".format(hours, mins, sec)
+    #else:
+        #return "{:02d}:{:02d}".format(mins, sec)
+        #return "{:2d}:{:02d}:{:02d}".format(hours, mins, sec)
 
 def play_sound():
     os.system("play -q -v {vol} {fname} &".format(
@@ -161,13 +166,12 @@ def play_sound():
 def count_down():
     global go_on
     go_on = True
-    if five == 5: MINUTES = 5
-    if ten == 10: MINUTES = 10
-    if fifteen == 15: MINUTES = 15
-    if twenty == 20: MINUTES = 20
-    if twentyfive == 25: MINUTES = 25
-    if thirty == 30: MINUTES = 30
-    #if plus == True: MINUTES = MINUTES +1
+    if onok == True: MINUTES = OK
+    if five == True: MINUTES = 5
+    if ten == True: MINUTES = 10
+    if fifteen == True: MINUTES = 15
+    if seven == True: MINUTES = 7
+    if twentytwo == True: MINUTES = 22
     for t in range(MINUTES * 60 - 1, -1, -1):
         if t == 0:
             play_sound()
@@ -184,23 +188,7 @@ def count_down():
             return
     reset()
 
-def count_down_custom():
-    global go_on
-    go_on = True
-    for t in range(MINUTES * 60 - 1, -1, -1):
-        if t == 0:
-            play_sound()
-            switch_to_window(WINDOW_TITLE)
-        time_str.set(formatter(t))
-        root.update()
-        # delay one second
-        for _ in range(2):
-            time.sleep(0.5)    # if minimized then maximized,
-            root.update()      # it's more responsive this way
-        if not go_on:
-            return
-    reset()
-
+#Clear variables
 def clear_vars():
     global five
     five = None
@@ -208,12 +196,10 @@ def clear_vars():
     ten = None
     global fifteen
     fifteen = None
-    global twenty
-    twenty = None
-    global twentyfive
-    twentyfive = None
-    global thirty
-    thirty = None
+    global seven
+    seven = None
+    global twentytwo
+    twentytwo = None
     root.update()
 
 def reset():
@@ -227,7 +213,7 @@ def five():
     global go_on
     go_on = False
     global five
-    five = 5
+    five = True
     time_str.set(formatter(5 * 60))
     root.update()
 
@@ -235,7 +221,7 @@ def ten():
     global go_on
     go_on = False
     global ten
-    ten = 10
+    ten = True
     time_str.set(formatter(10 * 60))
     root.update()
 
@@ -243,36 +229,40 @@ def fifteen():
     global go_on
     go_on = False
     global fifteen
-    fifteen = 15
+    fifteen = True
     time_str.set(formatter(15 * 60))
     root.update()
 
-def twenty():
+def seven():
     global go_on
     go_on = False
-    global twenty
-    twenty = 20
-    time_str.set(formatter(20 * 60))
+    global seven
+    seven = True
+    time_str.set(formatter(7 * 60))
     root.update()
     
-def twentyfive():
+def twentytwo():
     global go_on
     go_on = False
-    global twentyfive
-    twentyfive = 25    
-    time_str.set(formatter(25 * 60))
+    global twentytwo
+    twentytwo = True    
+    time_str.set(formatter(22 * 60))
     root.update()   
 
-def thirty():
-    global go_on
-    go_on = False
-    global thirty
-    thirty = 30
-    time_str.set(formatter(30 * 60))
-    root.update()
 
-def stfu():
+    
+
+def mute():
     call(["kill", "-9", "play"])
+    
+def onok():
+    global OK
+    OK = int(entry.get())
+    MINUTES = OK
+    global onok
+    onok = True
+    time_str.set(formatter(MINUTES * 60))
+    root.update()
 
 def center(win):
     """
@@ -343,22 +333,22 @@ root.update()
 # create buttons
 # pack() positions the buttons below the label
 #tk.Button(root, text='Start', command=count_down).pack(side="left")
-tk.Button(root, text='Start', command=count_down).place(relx=.15, rely=.45, anchor="c")
+tk.Button(root, text='Start', command=count_down).place(relx=.15, rely=.60, anchor="c")
 #(relheight=.25, relwidth=.35)
-tk.Button(root, text='Reset', command=reset).place(relx=.15, rely=.60, anchor="c")
-#tk.Button(root, text='Close', command=root.destroy).pack(side='bottom')
-tk.Button(root, text='Close', command=root.destroy).place(relx=.15, rely=.75, anchor="c")
+tk.Button(root, text='Reset', command=reset).place(relx=.15, rely=.75, anchor="c")
+tk.Button(root, text='Close', command=root.destroy).place(relx=.15, rely=.90, anchor="c")
+tk.Button(root, text='Mute', command=mute).place(relx=.80, rely=.90, anchor="c")
 
-tk.Button(root, text='5min ', command=five).place(relx=.50, rely=.45, anchor="c")
-tk.Button(root, text='10min', command=ten).place(relx=.80, rely=.45, anchor="c")
-tk.Button(root, text='15min', command=fifteen).place(relx=.50, rely=.60, anchor="c")
-tk.Button(root, text='20min', command=twenty).place(relx=.80, rely=.60, anchor="c")
-tk.Button(root, text='25min', command=twentyfive).place(relx=.50, rely=.75, anchor="c")
-tk.Button(root, text='30min', command=thirty).place(relx=.80, rely=.75, anchor="c")
-tk.Button(root, text='Start CTimer', command=count_down_custom).place(relx=.28, rely=.90, anchor="c")
-tk.Button(root, text='STFU', command=stfu).place(relx=.80, rely=.90, anchor="c")
-#tk.Button(root, text='-', command=minus).place(relx=.80, rely=.90, anchor="c")
+#Presets
+tk.Button(root, text='5min ', command=five).place(relx=.50, rely=.60, anchor="c")
+tk.Button(root, text='10min', command=ten).place(relx=.50, rely=.75, anchor="c")
+tk.Button(root, text='15min', command=fifteen).place(relx=.80, rely=.75, anchor="c")
+tk.Button(root, text='7min', command=seven).place(relx=.80, rely=.60, anchor="c")
+tk.Button(root, text='Chips', command=twentytwo).place(relx=.50, rely=.90, anchor="c")
 
+entry = Entry(root, width=10)
+entry.pack(side=TOP,padx=10,pady=10)
+tk.Button(root, text='OK', command=onok).place(relx=.85, rely=.45, anchor="c")
 
 
 # start the GUI event loop

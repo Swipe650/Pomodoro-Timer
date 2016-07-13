@@ -16,9 +16,7 @@ Screenshot
 Usage
 -----
 
-Create an application launcher and execute ./launcher.sh for countdown timer with basic presets
-
-For a custom timer execute $ ./pytimer.py X' or $ './launcher.sh X' (where X = number of minutes)
+Create an application launcher and execute ./launcher.sh or execute ./pytimer.py
 
 Dependencies
 ------------
@@ -30,5 +28,3 @@ Install the following packages with your package manager:
 
 The GUI is based on Tkinter. For Python 3 I had to install it too
 
-
-TODO: add an input box for time required and a button to increment time remaining by 1 mintue 
