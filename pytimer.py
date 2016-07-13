@@ -344,7 +344,7 @@ tk.Button(root, text='5min ', command=five).place(relx=.50, rely=.60, anchor="c"
 tk.Button(root, text='10min', command=ten).place(relx=.50, rely=.75, anchor="c")
 tk.Button(root, text='15min', command=fifteen).place(relx=.80, rely=.75, anchor="c")
 tk.Button(root, text='7min', command=seven).place(relx=.80, rely=.60, anchor="c")
-tk.Button(root, text='Chips', command=twentytwo).place(relx=.50, rely=.90, anchor="c")
+tk.Button(root, text='22min', command=twentytwo).place(relx=.50, rely=.90, anchor="c")
 
 entry = Entry(root, width=10)
 entry.pack(side=TOP,padx=10,pady=10)
