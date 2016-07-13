@@ -321,7 +321,7 @@ root = tk.Tk()
 root.wm_title(WINDOW_TITLE)
 root.wm_geometry ("-100-100")
 root.resizable(width=False, height=False)
-root.geometry('{}x{}'.format(190, 230))
+root.geometry('{}x{}'.format(195, 230))
 
 img = PhotoImage(file='/home/swipe/bin/pytimer/pytimer_icon.png')
 root.tk.call('wm', 'iconphoto', root._w, img)
@@ -329,7 +329,7 @@ root.tk.call('wm', 'iconphoto', root._w, img)
 time_str = tk.StringVar()
 # create the time display label, give it a large font
 # label auto-adjusts to the font
-label_font = ('helvetica', 35)
+label_font = ('helvetica', 37)
 tk.Label(root, textvariable=time_str, font=label_font, bg='white',
          fg='red', relief='raised', bd=3).pack(fill='x', padx=5, pady=5)
 time_str.set(formatter(MINUTES * 60))
@@ -337,23 +337,23 @@ root.update()
 # create buttons
 # pack() positions the buttons below the label
 #tk.Button(root, text='Start', command=count_down).pack(side="left")
-tk.Button(root, text='Start', command=count_down).place(relx=.15, rely=.60, anchor="c")
+tk.Button(root, text='Start', command=count_down).place(relx=.0, rely=.60, anchor="w")
 #(relheight=.25, relwidth=.35)
-tk.Button(root, text='Reset', command=reset).place(relx=.15, rely=.75, anchor="c")
-tk.Button(root, text='Close', command=root.destroy).place(relx=.15, rely=.90, anchor="c")
-tk.Button(root, text='Mute', command=mute).place(relx=.80, rely=.90, anchor="c")
+tk.Button(root, text='Reset', command=reset).place(relx=.0, rely=.75, anchor="w")
+tk.Button(root, text='Close', command=root.destroy).place(relx=.0, rely=.90, anchor="w")
+tk.Button(root, text='Mute', command=mute).place(relx=.99, rely=.90, anchor="e")
 
 # Preset buttons
-tk.Button(root, text='5min ', command=five).place(relx=.50, rely=.60, anchor="c")
-tk.Button(root, text='10min', command=ten).place(relx=.50, rely=.75, anchor="c")
-tk.Button(root, text='15min', command=fifteen).place(relx=.80, rely=.75, anchor="c")
-tk.Button(root, text='7min', command=seven).place(relx=.80, rely=.60, anchor="c")
-tk.Button(root, text='22min', command=twentytwo).place(relx=.50, rely=.90, anchor="c")
+tk.Button(root, text='5 min', command=five).place(relx=.48, rely=.60, anchor="c")
+tk.Button(root, text='10min', command=ten).place(relx=.48, rely=.75, anchor="c")
+tk.Button(root, text='15min', command=fifteen).place(relx=.99, rely=.75, anchor="e")
+tk.Button(root, text='7 min', command=seven).place(relx=.99, rely=.60, anchor="e")
+tk.Button(root, text='22min', command=twentytwo).place(relx=.48, rely=.90, anchor="c")
 
 # Input box
 entry = Entry(root, width=10)
-entry.pack(side=TOP,padx=10,pady=10)
-tk.Button(root, text='OK', command=onok).place(relx=.85, rely=.45, anchor="c")
+entry.pack(side=TOP,padx=0,pady=7)
+tk.Button(root, text='OK', command=onok).place(relx=.99, rely=.45, anchor="e")
 
 
 # start the GUI event loop
