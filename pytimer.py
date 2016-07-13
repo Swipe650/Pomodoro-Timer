@@ -18,17 +18,19 @@ import shlex
 import socket
 import sys
 import time
+import tkinter
+from tkinter import *
 from collections import OrderedDict
 from subprocess import PIPE, STDOUT, Popen
 from subprocess import call
-
-import tkinter
-from tkinter import *
-
-
-# Manjaro: sudo pacman -S tk
-# Ubuntu:  sudo apt-get install python3-tk
 import tkinter as tk
+
+# Package dependencies:
+"""
+wmctrl, xdotool, sox and tkinter / tk packages:
+Arh based distros: sudo pacman -S tk
+Ubuntu:  sudo apt-get install python3-tk
+"""
 
 go_on = None    # will be set later
 
@@ -249,12 +251,10 @@ def twentytwo():
     time_str.set(formatter(22 * 60))
     root.update()   
 
-
-    
-
 def mute():
     call(["kill", "-9", "play"])
-    
+
+# OK button code:    
 def onok():
     global OK
     OK = int(entry.get())
@@ -293,7 +293,7 @@ Usage: {fname} [parameter]
 Parameters:
 -h, --help        this help
 -play             play the sound and quit (for testing the volume)
-<minutes>         If not specified, then the default value is 10.
+
 """.strip().format(ver=VERSION, fname=sys.argv[0]))
 
 if len(sys.argv) > 1:
@@ -339,13 +339,14 @@ tk.Button(root, text='Reset', command=reset).place(relx=.15, rely=.75, anchor="c
 tk.Button(root, text='Close', command=root.destroy).place(relx=.15, rely=.90, anchor="c")
 tk.Button(root, text='Mute', command=mute).place(relx=.80, rely=.90, anchor="c")
 
-#Presets
+# Preset buttons
 tk.Button(root, text='5min ', command=five).place(relx=.50, rely=.60, anchor="c")
 tk.Button(root, text='10min', command=ten).place(relx=.50, rely=.75, anchor="c")
 tk.Button(root, text='15min', command=fifteen).place(relx=.80, rely=.75, anchor="c")
 tk.Button(root, text='7min', command=seven).place(relx=.80, rely=.60, anchor="c")
 tk.Button(root, text='22min', command=twentytwo).place(relx=.50, rely=.90, anchor="c")
 
+# Input box
 entry = Entry(root, width=10)
 entry.pack(side=TOP,padx=10,pady=10)
 tk.Button(root, text='OK', command=onok).place(relx=.85, rely=.45, anchor="c")

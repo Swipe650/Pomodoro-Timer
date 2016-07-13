@@ -16,7 +16,7 @@ Screenshot
 Usage
 -----
 
-Create an application launcher and execute ./launcher.sh or execute ./pytimer.py
+Create an application launcher add pytimer_icon.png and execute ./launcher.sh or execute ./pytimer.py
 
 Dependencies
 ------------
@@ -26,5 +26,5 @@ Install the following packages with your package manager:
 * xdotool
 * sox
 
-The GUI is based on Tkinter. For Python 3 I had to install it too
+The GUI is based on Tkinter. You will need to install the Tkinter or TK package (depending on your) distro
 
