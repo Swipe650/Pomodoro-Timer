@@ -169,7 +169,7 @@ def play_sound():
 def count_down():
     global go_on
     go_on = True
-    if onok == True: MINUTES = OK
+    if onset == True: MINUTES = SET
     if five == True: MINUTES = 5
     if ten == True: MINUTES = 10
     if fifteen == True: MINUTES = 15
@@ -255,13 +255,13 @@ def twentytwo():
 def mute():
     call(["kill", "-9", "play"])
 
-# OK button code:    
-def onok():
-    global OK
-    OK = int(entry.get())
-    MINUTES = OK
-    global onok
-    onok = True
+# SET button code:    
+def onset():
+    global SET
+    SET = int(entry.get())
+    MINUTES = SET
+    global onset
+    onset = True
     time_str.set(formatter(MINUTES * 60))
     root.update()
 
@@ -353,7 +353,7 @@ tk.Button(root, text='22min', command=twentytwo).place(relx=.48, rely=.90, ancho
 # Input box
 entry = Entry(root, width=10)
 entry.pack(side=TOP,padx=0,pady=7)
-tk.Button(root, text='OK', command=onok).place(relx=.99, rely=.45, anchor="e")
+tk.Button(root, text='Set', command=onset).place(relx=.99, rely=.45, anchor="e")
 
 
 # start the GUI event loop
