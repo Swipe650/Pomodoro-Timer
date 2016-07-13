@@ -11,6 +11,7 @@ Laszlo Szathmary, alias Jabba Laci https://github.com/jabbalaci/Pomodoro-Timer
 
 Modified by: Swipe650 https://github.com/Swipe650
 """
+from tkinter import Tk, PhotoImage
 
 import os
 import re
@@ -321,6 +322,9 @@ root.wm_title(WINDOW_TITLE)
 root.wm_geometry ("-100-100")
 root.resizable(width=False, height=False)
 root.geometry('{}x{}'.format(190, 230))
+
+img = PhotoImage(file='/home/swipe/bin/pytimer/pytimer_icon.png')
+root.tk.call('wm', 'iconphoto', root._w, img)
 
 time_str = tk.StringVar()
 # create the time display label, give it a large font
