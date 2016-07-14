@@ -11,7 +11,9 @@ Modified by: Swipe650 https://github.com/Swipe650
 Screenshot
 ---------
 
-![pytimer](screenshot.png) ![pytimer](screenshot2.png)
+![pytimer](screenshot.png) 
+
+![pytimer with no presets](screenshot2.png)
 
 Usage
 -----
