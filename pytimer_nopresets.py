@@ -319,46 +319,39 @@ if len(sys.argv) > 1:
 
 root = tk.Tk()
 root.wm_title(WINDOW_TITLE)
-root.wm_geometry ("-100-100")
+root.wm_geometry ("-30-80")
 root.resizable(width=False, height=False)
-root.geometry('{}x{}'.format(195, 140))
+#root.geometry('{}x{}'.format(195, 200))
 
 img = PhotoImage(file='/home/swipe/bin/pytimer/pytimer_icon.png')
 root.tk.call('wm', 'iconphoto', root._w, img)
+
+mainframe = tk.Frame(root, padx="3",pady="3")
+mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
+mainframe.columnconfigure(0, weight=1)
+mainframe.rowconfigure(0, weight=1)
 
 time_str = tk.StringVar()
 # create the time display label, give it a large font
 # label auto-adjusts to the font
 label_font = ('helvetica', 37)
 tk.Label(root, textvariable=time_str, font=label_font, bg='white',
-         fg='red', relief='raised', bd=3).pack(fill='x', padx=5, pady=5)
+         fg='red', relief='raised', bd=3).grid(padx=5, pady=5)
 time_str.set(formatter(MINUTES * 60))
 root.update()
-# create buttons
-# pack() positions the buttons below the label
-#tk.Button(root, text='Start', command=count_down).pack(side="left")
-tk.Button(root, text='Start', command=count_down).place(relx=.0, rely=.90, anchor="w")
-#tk.Button(root, text='Start', command=count_down).pack(side=LEFT)
-tk.Button(root, text='Reset', command=reset).place(relx=.50, rely=.90, anchor="c")
-#tk.Button(root, text='Reset', command=reset).pack(side=BOTTOM)
 
-#tk.Button(root, text='Close', command=root.destroy).place(relx=.0, rely=.90, anchor="w")
-tk.Button(root, text='Mute', command=mute).place(relx=.99, rely=.90, anchor="e")
-#tk.Button(root, text='Mute', command=mute).pack(side=RIGHT)
-
-'''
-# Preset buttons
-tk.Button(root, text='5 min', command=five).place(relx=.48, rely=.60, anchor="c")
-tk.Button(root, text='10min', command=ten).place(relx=.48, rely=.75, anchor="c")
-tk.Button(root, text='15min', command=fifteen).place(relx=.99, rely=.75, anchor="e")
-tk.Button(root, text='7 min', command=seven).place(relx=.99, rely=.60, anchor="e")
-tk.Button(root, text='22min', command=twentytwo).place(relx=.48, rely=.90, anchor="c")
-'''
 
 # Input box
-entry = Entry(root, width=10)
-entry.pack(side=TOP,padx=0,pady=1)
-tk.Button(root, text='Set', command=onset).place(relx=.99, rely=.70, anchor="e")
+entry = Entry(root, width=5)
+entry.grid(column=0, row=2, pady=5, sticky=(N))
+tk.Button(root, text='Set', command=onset).grid(column=0, row=2, sticky=(E))
+entry.focus()
+
+# create buttons
+tk.Button(root, text='Start', command=count_down).grid(column=0, row=2, sticky=(W))
+tk.Button(root, text='Reset', command=reset).grid(column=0, row=3, sticky=(N))
+tk.Button(root, text='Close', command=root.destroy).grid(column=0, row=3, sticky=(W))
+tk.Button(root, text='Mute', command=mute).grid(column=0, row=3, sticky=(E))
 
 # start the GUI event loop
 #root.wm_attributes("-topmost", 1)    # always on top
