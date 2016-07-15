@@ -10,8 +10,13 @@ Modified by: Swipe650 https://github.com/Swipe650
 
 Screenshot
 ---------
+Pytimer:
 
-![pytimer](screenshot.png)
+![pytimer](screenshot.png) 
+
+Pytimer with no presets:
+
+![pytimer with no presets](screenshot2.png)
 
 Usage
 -----
