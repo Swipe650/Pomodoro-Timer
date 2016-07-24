@@ -1,4 +1,4 @@
-A simple python GUI Countdown timer. It counts seconds from a given minute value that uses the Tkinter GUI toolkit
+A simple python GUI Countdown timer that uses the Tkinter GUI toolkit. It counts down seconds from a given minute value. 
 
 Basic Tk version by vegaseat:
 https://www.daniweb.com/programming/software-development/threads/464062/countdown-clock-with-python
