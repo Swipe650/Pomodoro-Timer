@@ -3,7 +3,8 @@ A simple python GUI Countdown timer that uses the Tkinter GUI toolkit. It counts
 Basic Tk version by vegaseat:
 https://www.daniweb.com/programming/software-development/threads/464062/countdown-clock-with-python
 
-Script based on Pomodoro-Timer:
+Script forked from Pomodoro-Timer:
+
 Laszlo Szathmary, alias Jabba Laci https://github.com/jabbalaci/Pomodoro-Timer
 
 Modified by: Swipe650 https://github.com/Swipe650
