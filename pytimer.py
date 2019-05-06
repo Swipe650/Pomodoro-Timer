@@ -166,7 +166,7 @@ def play_sound():
     ))
 
 
-def count_down():
+def count_down(event=None):
     global go_on
     go_on = True
     if onset == True: MINUTES = SET
@@ -208,14 +208,14 @@ def clear_vars():
     thirty = None
     root.update()
 
-def reset():
+def reset(event=None):
     global go_on
     go_on = False
     time_str.set(formatter(MINUTES * 60))
     clear_vars()
     root.update()
     
-def five():
+def five(event=None):
     global go_on
     go_on = False
     global five
@@ -223,7 +223,7 @@ def five():
     time_str.set(formatter(5 * 60))
     root.update()
 
-def ten():
+def ten(event=None):
     global go_on
     go_on = False
     global ten
@@ -231,7 +231,7 @@ def ten():
     time_str.set(formatter(10 * 60))
     root.update()
 
-def fifteen():
+def fifteen(event=None):
     global go_on
     go_on = False
     global fifteen
@@ -239,7 +239,7 @@ def fifteen():
     time_str.set(formatter(15 * 60))
     root.update()
 
-def twenty():
+def twenty(event=None):
     global go_on
     go_on = False
     global twenty
@@ -247,7 +247,7 @@ def twenty():
     time_str.set(formatter(20 * 60))
     root.update()
     
-def twentyfive():
+def twentyfive(event=None):
     global go_on
     go_on = False
     global twentyfive
@@ -255,7 +255,7 @@ def twentyfive():
     time_str.set(formatter(25 * 60))
     root.update() 
     
-def thirty():
+def thirty(event=None):
     global go_on
     go_on = False
     global thirty
@@ -263,11 +263,11 @@ def thirty():
     time_str.set(formatter(30 * 60))
     root.update() 
 
-def mute():
+def mute(event=None):
     call(["kill", "-9", "play"])
 
 # SET button code:    
-def onset():
+def onset(event=None):
     global SET
     SET = int(entry.get())
     MINUTES = SET
@@ -275,6 +275,9 @@ def onset():
     onset = True
     time_str.set(formatter(MINUTES * 60))
     root.update()
+
+def close(event=None):
+    root.destroy()
 
 def center(win):
     """
@@ -330,7 +333,8 @@ if len(sys.argv) > 1:
 
 root = tk.Tk()
 root.wm_title(WINDOW_TITLE)
-root.wm_geometry ("-100-100")
+#root.wm_geometry ("-100-100")
+root.wm_geometry ("-2030-0")
 root.resizable(width=False, height=False)
 #root.geometry('{}x{}'.format(195, 230))
 
@@ -356,22 +360,60 @@ root.update()
 # Input box
 entry = Entry(root, width=5)
 entry.grid(column=0, row=2, pady=5, sticky=(N))
-tk.Button(root, text='Set', command=onset).grid(column=0, row=2, sticky=(E))
 entry.focus()
+entry.bind('<Return>', onset)
 
 # create buttons
-tk.Button(root, text='Start', command=count_down).grid(column=0, row=2, sticky=(W))
+startbtn = tk.Button(root, text='Start', command=count_down)
+startbtn.grid(column=0, row=2, sticky=(E))
+startbtn.bind('<Return>', count_down)
+
+setbtn = tk.Button(root, text='Set', command=onset)
+setbtn.grid(column=0, row=2, sticky=(W))
+setbtn.bind('<Return>', onset)
+
 # preset buttons
-tk.Button(root, text='5 min', command=five).grid(column=0, row=3, sticky=(W))
-tk.Button(root, text='10min', command=ten).grid(column=0, row=3, sticky=(N))
-tk.Button(root, text='15min', command=fifteen).grid(column=0, row=3, sticky=(E))
-tk.Button(root, text='20min', command=twenty).grid(column=0, row=4, sticky=(W))
-tk.Button(root, text='25min', command=twentyfive).grid(column=0, row=4, sticky=(N))
-tk.Button(root, text='30min', command=thirty).grid(column=0, row=4, sticky=(E))
+fivebtn = tk.Button(root, text='5 min', command=five)
+fivebtn.grid(column=0, row=3, sticky=(W))
+fivebtn.bind('<Return>', five)
+
+tenbtn = tk.Button(root, text='10min', command=ten)
+tenbtn.grid(column=0, row=3, sticky=(N))
+tenbtn.bind('<Return>', ten)
+            
+            
+fifteenbtn = tk.Button(root, text='15min', command=fifteen)
+fifteenbtn.grid(column=0, row=3, sticky=(E))
+fifteenbtn.bind('<Return>', fifteen)
+
+twentybtn = tk.Button(root, text='20min', command=twenty)
+twentybtn.grid(column=0, row=4, sticky=(W))
+twentybtn.bind('<Return>', twenty)
+
+twentyfivebtn = tk.Button(root, text='25min', command=twentyfive)
+twentyfivebtn.grid(column=0, row=4, sticky=(N))
+twentyfivebtn.bind('<Return>', twentyfive)
+
+thritybtn = tk.Button(root, text='30min', command=thirty)
+thritybtn.grid(column=0, row=4, sticky=(E))
+thritybtn.bind('<Return>', thirty)
+
 # bottom buttons
-tk.Button(root, text='Reset', command=reset).grid(column=0, row=5, sticky=(N))
-tk.Button(root, text='Close', command=root.destroy).grid(column=0, row=5, sticky=(W))
-tk.Button(root, text='Mute', command=mute).grid(column=0, row=5, sticky=(E))
+#tk.Button(root, text='Close', command=root.destroy).grid(column=0, row=5, sticky=(W))
+#tk.Button(root, text='Reset', command=reset).grid(column=0, row=5, sticky=(N))
+#tk.Button(root, text='Mute', command=mute).grid(column=0, row=5, sticky=(E))
+
+closebtn = tk.Button(root, text='Close', command=root.destroy)
+closebtn.grid(column=0, row=5, sticky=(W))
+closebtn.bind('<Return>', close)
+
+resetbtn = tk.Button(root, text='Reset', command=reset)
+resetbtn.grid(column=0, row=5, sticky=(N))
+resetbtn.bind('<Return>', reset)
+
+mutebtn = tk.Button(root, text='Mute', command=mute)
+mutebtn.grid(column=0, row=5, sticky=(E))
+mutebtn.bind('<Return>', mute)
 
 # start the GUI event loop
 #root.wm_attributes("-topmost", 1)    # always on top
