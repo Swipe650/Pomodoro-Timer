@@ -316,7 +316,7 @@ mutebtn.grid(column=0, row=3, sticky=(E))
 mutebtn.bind('<Return>', mute)
 
 
-setbtn = tk.Button(root, text='Set', command=onset)
+setbtn = tk.Button(root, text=' Set ', command=onset)
 setbtn.grid(column=0, row=2, sticky=(W))
 setbtn.bind('<Return>', onset)
 
