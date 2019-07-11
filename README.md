@@ -21,6 +21,8 @@ Usage
 
 Create an application launcher add pytimer_icon.png and execute ./launcher.sh or execute ./pytimer.py
 
+Type your required timer and hit enter. Reset will cancel the timer and Mute will stop the alarm
+
 Dependencies
 ------------
 
