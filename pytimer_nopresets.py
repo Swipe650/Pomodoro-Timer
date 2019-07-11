@@ -170,6 +170,9 @@ def play_sound():
 
 
 def reset(event=None):
+    entry.delete(len(entry.get())-1)
+    entry.delete(len(entry.get())-1)
+    entry.delete(len(entry.get())-1)
     global go_on
     go_on = False
     time_str.set(formatter(MINUTES * 60))
@@ -297,6 +300,7 @@ entry = Entry(root, width=3)
 entry.grid(column=0, row=2, pady=3, sticky=(N))
 entry.focus()
 entry.bind('<Return>', onset)
+
 
 
 
