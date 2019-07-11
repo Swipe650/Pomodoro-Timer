@@ -15,9 +15,6 @@ Pytimer:
 
 ![pytimer](screenshot.png) 
 
-Pytimer with no presets:
-
-![pytimer with no presets](screenshot2.png)
 
 Usage
 -----
