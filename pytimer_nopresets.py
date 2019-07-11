@@ -166,24 +166,7 @@ def play_sound():
     ))
 
 
-def count_down(event=None):
-    global go_on
-    go_on = True
-    if onset == True: MINUTES = SET
-    for t in range(MINUTES * 60 - 1, -1, -1):
-        if t == 0:
-            play_sound()
-            switch_to_window(WINDOW_TITLE)
-        time_str.set(formatter(t))
-        root.update()
-            
-        # delay one second
-        for _ in range(2):
-            time.sleep(0.5)    # if minimized then maximized,
-            root.update()      # it's more responsive this way
-        if not go_on:
-            return
-    reset()
+
 
 
 def reset(event=None):
@@ -209,7 +192,27 @@ def onset(event=None):
     onset = True
     time_str.set(formatter(MINUTES * 60))
     root.update()
-   
+
+#def count_down(event=None):
+    global go_on
+    go_on = True
+    if onset == True: MINUTES = SET
+    for t in range(MINUTES * 60 - 1, -1, -1):
+        if t == 0:
+            play_sound()
+            switch_to_window(WINDOW_TITLE)
+        time_str.set(formatter(t))
+        root.update()
+            
+        # delay one second
+        for _ in range(2):
+            time.sleep(0.5)    # if minimized then maximized,
+            root.update()      # it's more responsive this way
+        if not go_on:
+            return
+    reset()
+
+
 
 def center(win):
     """
@@ -290,35 +293,34 @@ root.update()
 
 
 # Input box
-entry = Entry(root, width=5)
-entry.grid(column=0, row=2, pady=5, sticky=(N))
+entry = Entry(root, width=3)
+entry.grid(column=0, row=2, pady=3, sticky=(N))
 entry.focus()
-
 entry.bind('<Return>', onset)
 
 
 
 # create buttons and activates them with enter key
-startbtn = tk.Button(root, text='Start', command=count_down)
-startbtn.grid(column=0, row=2, sticky=(E))
-startbtn.bind('<Return>', count_down)
+#startbtn = tk.Button(root, text='Start', command=count_down)
+#startbtn.grid(column=0, row=2, sticky=(E))
+#startbtn.bind('<Return>', count_down)
 
 closebtn = tk.Button(root, text='Close', command=root.destroy)
-closebtn.grid(column=0, row=3, sticky=(W))
+closebtn.grid(column=0, row=2, sticky=(W))
 closebtn.bind('<Return>', close)
 
 resetbtn = tk.Button(root, text='Reset', command=reset)
-resetbtn.grid(column=0, row=3, sticky=(N))
+resetbtn.grid(column=0, row=2, sticky=(N))
 resetbtn.bind('<Return>', reset)
 
 mutebtn = tk.Button(root, text='Mute', command=mute)
-mutebtn.grid(column=0, row=3, sticky=(E))
+mutebtn.grid(column=0, row=2, sticky=(E))
 mutebtn.bind('<Return>', mute)
 
 
-setbtn = tk.Button(root, text=' Set ', command=onset)
-setbtn.grid(column=0, row=2, sticky=(W))
-setbtn.bind('<Return>', onset)
+#setbtn = tk.Button(root, text=' Set ', command=onset)
+#setbtn.grid(column=0, row=2, sticky=(W))
+#setbtn.bind('<Return>', onset)
 
 
 
