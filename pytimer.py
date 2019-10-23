@@ -184,6 +184,7 @@ def mute(event=None):
     call(["kill", "-9", "play"])
 
 def close(event=None):
+    call(["kill", "-9", "play"])
     root.destroy()
 
 # SET button code:   
@@ -309,7 +310,8 @@ entry.bind('<Return>', onset)
 #startbtn.grid(column=0, row=2, sticky=(E))
 #startbtn.bind('<Return>', count_down)
 
-closebtn = tk.Button(root, text='Close', command=root.destroy)
+#closebtn = tk.Button(root, text='Close', command=root.destroy)
+closebtn = tk.Button(root, text='Close', command=close)
 closebtn.grid(column=0, row=2, sticky=(W))
 closebtn.bind('<Return>', close)
 
